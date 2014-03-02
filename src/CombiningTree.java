@@ -14,13 +14,13 @@ public class CombiningTree {
 			leaf[i] = nodes[nodes.length - i - 1];
 	}
 
-	public int getAndIncrement() {
+	public int getAndIncrement() throws PanicException {
 		Stack<Node> nodeStack = new Stack<Node>();
 		Node myLeaf = leaf[((CountingThread) Thread.currentThread())
-				.getThreadId()];
+				.getThreadId() / 2];
 		Node node = myLeaf;
 		
-		/* precombining phase */
+		/* pre-combining phase */
 		while(node.precombine())
 			node = node.parent;
 		
@@ -30,7 +30,20 @@ public class CombiningTree {
 		node = myLeaf;
 		int combined = 1;
 		while(node != stopNode) {
-			
+			combined = node.combine(combined);
+			nodeStack.push(node);
+			node = node.parent;
 		}
+		
+		/* operation phase */
+		int prior = stopNode.op(combined);
+		
+		/* distribution phase */
+		while(!nodeStack.isEmpty()) {
+			node = nodeStack.pop();
+			node.distribute(prior);
+		}
+		
+		return prior;
 	}
 }
