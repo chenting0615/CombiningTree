@@ -1,9 +1,9 @@
 
 public class CountingThread extends Thread {
 	private int threadId;
-	private CombiningTree counterTree;
+	private IAtomicCounter counterTree;
 	
-	public CountingThread(CombiningTree counter, int id) {
+	public CountingThread(IAtomicCounter counter, int id) {
 		counterTree = counter;
 		threadId = id;
 	}

@@ -1,9 +1,10 @@
 import java.util.Stack;
 
-public class CombiningTree implements IAtomicCounter {
+
+public class GraphicalCombiningTree {
 	Node[] leaf;
 
-	public CombiningTree(int width) {
+	public GraphicalCombiningTree(int width) {
 		Node[] nodes = new Node[width - 1];
 		nodes[0] = new Node();
 		for (int i = 1; i < nodes.length; i++)

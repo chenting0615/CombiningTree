@@ -6,8 +6,8 @@ public class SharedCountingMain {
 	public static void main(String[] args) {
 		List<CountingThread> threadList = new ArrayList<CountingThread>();
 		
-		CombiningTree counterTree = new CombiningTree(2048);
-		for(int i = 0; i < 1225; i++) {
+		CombiningTree counterTree = new CombiningTree(8);
+		for(int i = 0; i < 5; i++) {
 			CountingThread thread = new CountingThread(counterTree, i + 1);
 			threadList.add(thread);
 			thread.start();
